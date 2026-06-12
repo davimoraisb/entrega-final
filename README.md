@@ -20,8 +20,8 @@ Este projeto foi desenvolvido como trabalho final da disciplina, aplicando conce
 
 ### Backend
 
-- Python 3.11
-- Flask
+- Python 3.11+
+- Flask 3.0.3
 - Bcrypt
 
 ### Banco de Dados
@@ -43,6 +43,21 @@ Este projeto foi desenvolvido como trabalho final da disciplina, aplicando conce
 - psycopg2-binary
 - python-dotenv
 - gunicorn
+
+---
+
+## Requisitos
+
+### Versão recomendada do Python
+
+O projeto foi desenvolvido e testado utilizando Python 3.12.
+
+Versões recomendadas:
+
+- Python 3.11
+- Python 3.12
+
+Versões mais recentes, como Python 3.14, podem apresentar incompatibilidades com algumas dependências, especialmente com `psycopg2-binary`.
 
 ---
 
@@ -128,12 +143,12 @@ Responsável por consolidar o consumo diário dos usuários, retornando:
 
 #### fn_registrar_consumo()
 
-Função responsável por:
+Responsável por:
 
 1. Registrar uma nova ingestão de água;
 2. Calcular o total consumido no dia;
 3. Atualizar automaticamente a tabela de metas diárias;
-4. Indicar se a meta diária foi atingida.
+4. Informar se a meta diária foi atingida.
 
 ---
 
@@ -151,20 +166,26 @@ git clone https://github.com/davimoraisb/entrega-final.git
 cd entrega-final
 ```
 
-### Criar ambiente virtual
+### Criar um ambiente virtual
 
 Windows:
 
 ```bash
-python -m venv venv
-venv\Scripts\activate
+py -3.12 -m venv .venv
+.venv\Scripts\activate
 ```
 
 Linux:
 
 ```bash
-python3 -m venv venv
-source venv/bin/activate
+python3.12 -m venv .venv
+source .venv/bin/activate
+```
+
+### Atualizar o pip
+
+```bash
+python -m pip install --upgrade pip
 ```
 
 ### Instalar as dependências
@@ -201,7 +222,7 @@ psql -U postgres -d hidratacao_db -f db_pgadmin.sql
 python app.py
 ```
 
-A aplicação será disponibilizada em:
+A aplicação estará disponível em:
 
 ```text
 http://localhost:5000
@@ -346,6 +367,16 @@ O projeto utiliza GitHub Actions para:
 
 ---
 
+## Equipe de Desenvolvimento
+
+| Nome | GitHub |
+|--------|--------|
+| Arthur Galvão | https://github.com/joaosilva |
+| Arthur Machado | https://github.com/amachado2006 |
+| Artur Nemer | https://github.com/ArturCosta-coder |
+| Davi Morais | https://github.com/davimoraisb |
+| Socrates  | https://github.com/carloslima |
+
 ## Desenvolvimento Colaborativo
 
 O projeto foi desenvolvido utilizando:
@@ -355,6 +386,21 @@ O projeto foi desenvolvido utilizando:
 - Code Review;
 - GitHub Actions;
 - Controle de versão com Git.
+
+---
+
+## Estrutura da API
+
+| Método | Endpoint | Descrição |
+|----------|----------|----------|
+| POST | `/usuarios` | Cadastro de usuários |
+| POST | `/login` | Autenticação |
+| POST | `/consumo` | Registro de consumo |
+| GET | `/consumo/<usuario_id>/hoje` | Consumos do dia |
+| GET | `/consumo/<usuario_id>/progresso` | Progresso diário |
+| GET | `/consumo/<usuario_id>/historico` | Histórico do usuário |
+| PUT | `/usuarios/<usuario_id>/meta` | Atualização da meta |
+| GET | `/health` | Verificação da aplicação |
 
 ---
 
