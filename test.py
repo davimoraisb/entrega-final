@@ -1,18 +1,16 @@
-import pytest
 import os
+import time
+import pytest
+
 os.environ.setdefault("DB_NAME", "hidratacao_db")
 os.environ.setdefault("DB_HOST", "localhost")
 os.environ.setdefault("DB_PORT", "5432")
 os.environ.setdefault("DB_USER", "postgres")
 os.environ.setdefault("DB_PASSWORD", "postgres")
-os.environ.setdefault("DB_SSL", "false")
 
 import db
 
-
-import time
 EMAIL_TESTE = f"teste_{int(time.time())}@email.com"
-USUARIO_ID_GLOBAL = None
 
 
 

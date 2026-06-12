@@ -4,62 +4,64 @@
 #  Salve em: .github/workflows/ci.yml no seu repositório
 # ============================================================
 
-name: CI — Testes e Build
+name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
-    # Sobe um PostgreSQL temporário para os testes
     services:
       postgres:
         image: postgres:15
+
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: hidratacao_db
+
         ports:
           - 5432:5432
+
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
 
-    steps:
-      - name: 📥 Checkout do código
-        uses: actions/checkout@v4
+    env:
+      DB_HOST: localhost
+      DB_PORT: 5432
+      DB_NAME: hidratacao_db
+      DB_USER: postgres
+      DB_PASSWORD: postgres
 
-      - name: 🐍 Configurar Python 3.11
-        uses: actions/setup-python@v5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: 📦 Instalar dependências
+      - name: Instalar dependências
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pytest
 
-      - name: 🗄️ Criar tabelas no banco de teste
+      - name: Criar banco
         env:
           PGPASSWORD: postgres
         run: |
-          psql -h localhost -U postgres -d hidratacao_db \
-            -f controle_hidratacao_db.sql
+          psql -h localhost -U postgres -d hidratacao_db -f db_pgadmin.sql
 
-      - name: ✅ Rodar testes
-        env:
-          DB_HOST: localhost
-          DB_PORT: 5432
-          DB_NAME: hidratacao_db
-          DB_USER: postgres
-          DB_PASSWORD: postgres
-          DB_SSL: false
-        run: pytest test_db.py -v
+      - name: Executar testes
+        run: |
+          pytest test.py -v
