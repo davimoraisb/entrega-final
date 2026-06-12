@@ -371,11 +371,11 @@ O projeto utiliza GitHub Actions para:
 
 | Nome | GitHub |
 |--------|--------|
-| Arthur Galvão | https://github.com/joaosilva |
+| Arthur Galvão |  |
 | Arthur Machado | https://github.com/amachado2006 |
 | Artur Nemer | https://github.com/ArturCosta-coder |
 | Davi Morais | https://github.com/davimoraisb |
-| Socrates  | https://github.com/carloslima |
+| Socrates  |  |
 
 ## Desenvolvimento Colaborativo
 
