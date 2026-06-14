@@ -1,5 +1,5 @@
 # Controle de Hidratação
-
+![CI](https://github.com/davimoraisb/entrega-final/actions/workflows/ci.yml/badge.svg)
 Sistema desenvolvido em Python com Flask e PostgreSQL para monitoramento da ingestão diária de água. A aplicação permite cadastrar usuários, registrar consumos, acompanhar metas diárias e consultar o histórico de hidratação.
 
 ## Objetivo
