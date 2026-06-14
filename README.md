@@ -242,8 +242,8 @@ Body:
 
 ```json
 {
-  "nome": "João Silva",
-  "email": "joao@email.com",
+  "nome": "Mateus Bianco",
+  "email": "matbianco@email.com",
   "senha": "123456",
   "peso_kg": 75,
   "idade": 25
@@ -262,7 +262,7 @@ Body:
 
 ```json
 {
-  "email": "joao@email.com",
+  "email": "matbianco@email.com",
   "senha": "123456"
 }
 ```
